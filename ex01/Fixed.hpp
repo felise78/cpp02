@@ -13,20 +13,28 @@
 #ifndef FIXED_HPP
  # define FIXED_HPP
 
-class Fixed 
-{
-	public:
-		Fixed(); //Constructeur par defaut
-		Fixed(const Fixed& copy); //Constructeur de recopie
-		Fixed &operator = (const Fixed& src); //Operateur d'affectatinon
-		~Fixed(); //Destructeur
+	#include <iostream>
+
+	class Fixed 
+	{
+		public:
+			Fixed(); //Constructeur par defaut
+			Fixed(const Fixed& copy); //Constructeur de recopie
+			Fixed(const int nb);
+			Fixed(const float nb);
+			Fixed& operator=(const Fixed& src); //Operateur d'affectatinon
+			~Fixed(); //Destructeur
+			
+			int getRawBits( void ) const;
+			void setRawBits( int const raw );
+			float toFloat( void ) const;
+			int toInt( void ) const;
 		
-		int getRawBits( void ) const;
-		void setRawBits( int const raw );
-	
-	private:
-		int	m_value;
-		const static int m_fract = 8;
-};
+		private:
+			int	m_value;
+			const static int m_fract = 8;
+	};
+
+	std::ostream& operator<<( std::ostream &flux, Fixed const &fixed );
 
 #endif

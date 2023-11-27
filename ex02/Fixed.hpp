@@ -19,16 +19,35 @@
 	{
 		public:
 			Fixed(); //Constructeur par defaut
-			Fixed(const int nb); // constructeurs avec param
+			Fixed(const int nb); // Constructeurs avec parametres 
 			Fixed(const float nb);
 			Fixed(const Fixed& copy); //Constructeur de recopie
-			Fixed& operator=(const Fixed& src); //Operateur d'affectatinon
+			Fixed& operator=(const Fixed& src); //Surcharges d'operateurs 
+			bool operator>(const Fixed& src) const; // je peux les declarer en const car elle ne
+			bool operator<(const Fixed& src) const; // modifie pas l'objet
+			bool operator>=(const Fixed& src) const;
+			bool operator<=(const Fixed& src) const;
+			bool operator==(const Fixed& src) const;
+			bool operator!=(const Fixed& src) const;
+			Fixed operator+(const Fixed& src);
+			Fixed operator-(const Fixed& src);
+			Fixed operator*(const Fixed& src);
+			Fixed operator/(const Fixed& src);
+			Fixed&	operator++();
+			Fixed	operator++(int);
+			Fixed&	operator--();
+			Fixed	operator--(int);
 			~Fixed(); //Destructeur
 			
 			int getRawBits( void ) const;
 			void setRawBits( int const raw );
 			float toFloat( void ) const;
 			int toInt( void ) const;
+
+			static Fixed min(Fixed& a, Fixed& b);
+			static Fixed min(const Fixed& a, const Fixed& b);
+			static Fixed max(Fixed& a, Fixed& b);
+			static Fixed max(const Fixed& a, const Fixed& b);
 		
 		private:
 			int	m_value;

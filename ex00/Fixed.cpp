@@ -6,12 +6,16 @@
 /*   By: hemottu <hemottu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 18:01:02 by hemottu           #+#    #+#             */
-/*   Updated: 2023/11/21 18:01:03 by hemottu          ###   ########.fr       */
+/*   Updated: 2023/11/28 12:34:04 by hemottu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 #include <iostream>
+
+// #######################################
+// #            FORME CANONIQUE          #
+// #######################################
 
 Fixed::Fixed() : m_value(0)
 {
@@ -35,6 +39,11 @@ Fixed::~Fixed()
 {
 	std::cout << "Destructor called" << std::endl;
 }
+
+
+// #######################################
+// #          FONCTIONS MEMBRES          #
+// #######################################
 
 int Fixed::getRawBits( void ) const
 {

@@ -6,7 +6,7 @@
 /*   By: hemottu <hemottu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 18:00:59 by hemottu           #+#    #+#             */
-/*   Updated: 2023/11/21 18:23:15 by hemottu          ###   ########.fr       */
+/*   Updated: 2023/11/28 14:22:58 by hemottu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,32 +18,37 @@
 	class Fixed 
 	{
 		public:
-			Fixed(); //Constructeur par defaut
-			Fixed(const int nb); // Constructeurs avec parametres 
+			// Forme canonique 
+			Fixed();
+			Fixed(const Fixed& copy); 
+			Fixed& operator=(const Fixed& src); 
+			~Fixed();
+
+			// Constructeurs avec parametres
+			Fixed(const int nb);  
 			Fixed(const float nb);
-			Fixed(const Fixed& copy); //Constructeur de recopie
-			Fixed& operator=(const Fixed& src); //Surcharges d'operateurs 
+			
+			// Surcharges d'operateurs
 			bool operator>(const Fixed& src) const; // je peux les declarer en const car elle ne
 			bool operator<(const Fixed& src) const; // modifie pas l'objet
 			bool operator>=(const Fixed& src) const;
 			bool operator<=(const Fixed& src) const;
 			bool operator==(const Fixed& src) const;
 			bool operator!=(const Fixed& src) const;
-			Fixed operator+(const Fixed& src);
-			Fixed operator-(const Fixed& src);
-			Fixed operator*(const Fixed& src);
-			Fixed operator/(const Fixed& src);
+			Fixed operator+(const Fixed& src) const;
+			Fixed operator-(const Fixed& src) const;
+			Fixed operator*(const Fixed& src) const;
+			Fixed operator/(const Fixed& src) const;
 			Fixed&	operator++();
 			Fixed	operator++(int);
 			Fixed&	operator--();
 			Fixed	operator--(int);
-			~Fixed(); //Destructeur
 			
+			// Fonctions membres
 			int getRawBits( void ) const;
 			void setRawBits( int const raw );
 			float toFloat( void ) const;
 			int toInt( void ) const;
-
 			static Fixed min(Fixed& a, Fixed& b);
 			static Fixed min(const Fixed& a, const Fixed& b);
 			static Fixed max(Fixed& a, Fixed& b);

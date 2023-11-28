@@ -6,7 +6,7 @@
 /*   By: hemottu <hemottu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 18:00:59 by hemottu           #+#    #+#             */
-/*   Updated: 2023/11/21 18:23:15 by hemottu          ###   ########.fr       */
+/*   Updated: 2023/11/28 12:39:35 by hemottu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,17 @@
 	class Fixed 
 	{
 		public:
-			Fixed(); //Constructeur par defaut
-			Fixed(const int nb); // constructeurs avec param
-			Fixed(const float nb);
-			Fixed(const Fixed& copy); //Constructeur de recopie
-			Fixed& operator=(const Fixed& src); //Operateur d'affectatinon
-			~Fixed(); //Destructeur
+			// forme canonique
+			Fixed();							// Constructeur par defaut
+			Fixed(const Fixed& copy);			// Constructeur de recopie
+			Fixed& operator=(const Fixed& src);	// Operateur d'affectatinon
+			~Fixed();							// Destructeur
 			
+			// constructeurs avec parametres 
+			Fixed(const int nb); 
+			Fixed(const float nb);
+			
+			// fonctions membres
 			int getRawBits( void ) const;
 			void setRawBits( int const raw );
 			float toFloat( void ) const;

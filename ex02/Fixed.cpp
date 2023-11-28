@@ -6,13 +6,14 @@
 /*   By: hemottu <hemottu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 18:01:02 by hemottu           #+#    #+#             */
-/*   Updated: 2023/11/21 18:01:03 by hemottu          ###   ########.fr       */
+/*   Updated: 2023/11/28 15:35:08 by hemottu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 #include <iostream>
 #include <cmath>
+#include <climits>
 
 // #######################################
 // #            FORME CANONIQUE          #
@@ -99,28 +100,28 @@ bool	Fixed::operator!=(const Fixed& src) const
 // #   SURCHARGES OPERATEURS ARITHMETIQUE   #
 // ##########################################
 
-Fixed	Fixed::operator+(const Fixed& src)
+Fixed	Fixed::operator+(const Fixed& src) const
 {
 	Fixed res;
 	res.setRawBits(getRawBits() + src.getRawBits());
 	return res;
 }
 
-Fixed	Fixed::operator-(const Fixed& src)
+Fixed	Fixed::operator-(const Fixed& src) const
 {
 	Fixed res;
 	res.setRawBits(getRawBits() - src.getRawBits());
 	return res;
 }
 
-Fixed	Fixed::operator*(const Fixed& src)
+Fixed	Fixed::operator*(const Fixed& src) const
 {
 	Fixed res;
-	res.setRawBits(getRawBits() * src.getRawBits() >> m_fract); 
+	res.setRawBits((int)(((int64_t)getRawBits() * (int64_t)src.getRawBits()) >> m_fract));
 	return res;
 }
 
-Fixed	Fixed::operator/(const Fixed& src) 
+Fixed	Fixed::operator/(const Fixed& src) const
 {
 	Fixed res;
 	res.setRawBits(getRawBits() / src.getRawBits() << m_fract);
@@ -134,7 +135,7 @@ Fixed	Fixed::operator/(const Fixed& src)
 // #   SURCHARGES OPERATEURS d'INCREMENTATION   #
 // ##############################################
 
-// incrémentation préfixe (++objet)
+//incrémentation préfixe (++objet)
 Fixed&	Fixed::operator++()
 {
     ++m_value;
